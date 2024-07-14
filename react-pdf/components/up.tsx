@@ -12,7 +12,6 @@ export default () => (
     strokeLinejoin='round'
     className='feather feather-arrow-up'
   >
-    <line x1='12' y1='19' x2='12' y2='5' />
-    <polyline points='5 12 12 5 19 12' />
+    <polyline points='12 5 5 12 12 19' />
   </svg>
 )

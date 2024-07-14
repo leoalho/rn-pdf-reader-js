@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { render } from 'react-dom'
+import ReactDom from 'react-dom'
 import Document from 'react-pdf/dist/Document'
 import Page from 'react-pdf/dist/Page'
 import raf, { cancel } from 'raf'
@@ -137,7 +137,7 @@ class Reader extends React.Component<Props, State> {
       onRenderError={this.onError}
       onGetTextError={this.onError}
       onGetAnnotationsError={this.onError}
-      width={(document.body.clientWidth * 90) / 100}
+      width={document.body.clientWidth}
       onRenderSuccess={() => {
         this.__zoomEvent = false
       }}
@@ -220,7 +220,7 @@ class Reader extends React.Component<Props, State> {
                 className='Reader__container__navigate__arrow'
                 style={{
                   ...(currentPage === 1
-                    ? { color: 'rgba(255,255,255,0.4)' }
+                    ? { color: 'rgba(0,0,0,0.4)' }
                     : {}),
                   ...customStyle?.readerContainerNavigateArrow,
                 }}
@@ -232,7 +232,7 @@ class Reader extends React.Component<Props, State> {
                 className='Reader__container__navigate__arrow'
                 style={{
                   ...(currentPage === numPages
-                    ? { color: 'rgba(255,255,255,0.4)' }
+                    ? { color: 'rgba(0,0,0,0.4)' }
                     : {}),
                   ...customStyle?.readerContainerNavigateArrow,
                 }}
@@ -253,6 +253,7 @@ const file = tagData.getAttribute('data-file')
 // @ts-ignore
 const customStyle = window.CUSTOM_STYLE
 // @ts-ignore
-const withScroll = window.WITH_SCROLL
+const withScroll = false
+  // window.WITH_SCROLL
 
-render(<Reader {...{ file, customStyle, withScroll }} />, ReactContainer)
+ReactDom.render(<Reader {...{ file, customStyle, withScroll }} />, ReactContainer)
