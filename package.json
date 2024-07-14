@@ -1,10 +1,10 @@
 {
-  "name": "rn-pdf-reader-js",
-  "version": "4.1.1",
+  "name": "rn-pdf-reader",
+  "version": "0.0.1",
   "description": "PDF reader for Expo",
-  "main": "lib/index.js",
+  "main": "node_modules/expo/AppEntry.js",
   "types": "lib/index.d.ts",
-  "author": "Xavier Carpentier <xcapetir@gmail.com> (https://xaviercarpentier.com/)",
+  "author": "Leo Alho",
   "license": "MIT",
   "scripts": {
     "start": "yarn config:dev && expo start -c",
@@ -31,7 +31,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xcarpentier/rn-pdf-reader-js.git"
+    "url": "git+https://github.com/leoalho/rn-pdf-reader-js.git"
   },
   "peerDependencies": {
     "expo": ">= 33.0.x < 41.0.x",

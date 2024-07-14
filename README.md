@@ -1,19 +1,7 @@
 <h1 align="center">PDF Reader</h1>
 <p align="center">Android support 🚀</p>
 
-<p align="center">
-   <img width="250" src="https://thumbs.gfycat.com/DeadPoisedBrownbutterfly-max-14mb.gif" />
-   <br/>
-   <br/>
-   <br/>
-   <br/>
-   <a href="https://www.npmjs.com/package/rn-pdf-reader-js"><img alt="npm version" src="https://badge.fury.io/js/rn-pdf-reader-js.svg"/>
-   <a href="https://www.npmjs.com/package/rn-pdf-reader-js">
-  <img alt="npm downloads" src="https://img.shields.io/npm/dm/rn-pdf-reader-js.svg"/></a>
-<a href="http://reactnative.gallery/xcarpentier/rn-pdf-reader-js"><img src="https://img.shields.io/badge/reactnative.gallery-%F0%9F%8E%AC-green.svg"/></a>
-</a>
-  <a href="#hire-an-expert"><img src="https://img.shields.io/badge/%F0%9F%92%AA-hire%20an%20expert-brightgreen"/></a>
-</p>
+This is a fork of [rn-pdf-reader-js](https://github.com/xcarpentier/rn-pdf-reader-js) with mainly UI changes compared to the original.
 
 # Read a PDF just with JS (no native libs needed)
 
@@ -24,8 +12,6 @@
 - 👉**Install expo-constants** on your own!
 - Use it into Expo app (from expo client, Standalone app or ExpoKit app).
 - Only React-Native 0.59-0.60+ support, **Expo SDK 33-36+**
-
-[PRs are welcome...](https://github.com/xcarpentier/rn-pdf-reader-js/pulls)
 
 ## Example
 
@@ -101,6 +87,3 @@ interface Props {
 
 - [Why the component doesn't render PDF?](https://github.com/xcarpentier/rn-pdf-reader-js/issues/15#issuecomment-397306743)
 
-## Hire an expert!
-
-Looking for a ReactNative freelance expert with more than 12 years experience? Contact me from my [website](https://xaviercarpentier.com)!
