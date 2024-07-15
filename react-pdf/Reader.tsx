@@ -191,8 +191,7 @@ class Reader extends React.Component<Props, State> {
               </div>
             </div>
           )}
-
-          <div
+          {showZoom && (<div
             className='Reader__container__zoom_container'
             style={customStyle?.readerContainerZoomContainer}
           >
@@ -210,7 +209,7 @@ class Reader extends React.Component<Props, State> {
             >
               <Minus />
             </div>
-          </div>
+          </div>)}
           {numPages > 1 && !withScroll && (
             <div
               className={'Reader__container__navigate'}
@@ -255,5 +254,6 @@ const customStyle = window.CUSTOM_STYLE
 // @ts-ignore
 const withScroll = false
   // window.WITH_SCROLL
+const showZoom = false
 
-ReactDom.render(<Reader {...{ file, customStyle, withScroll }} />, ReactContainer)
+ReactDom.render(<Reader {...{ file, customStyle, withScroll, showZoom }} />, ReactContainer)
