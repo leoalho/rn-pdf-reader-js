@@ -494,7 +494,11 @@ class PdfReader extends React.Component<Props, State> {
               style,
               source: renderedOnce || !isAndroid ? source : undefined,
             }}
-            onMessage={(event) => console.log(event.nativeEvent.data)}
+            onMessage={(event) =>  {
+              const eventJSON = JSON.parse(event.nativeEvent.data)
+              const totalPages = eventJSON.numPages
+              this.props.totalPages && this.props.totalPages(totalPages)
+            }}
             allowFileAccess={isAndroid}
             allowFileAccessFromFileURLs={isAndroid}
             allowUniversalAccessFromFileURLs={isAndroid}
