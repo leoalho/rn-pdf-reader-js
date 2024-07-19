@@ -54,7 +54,10 @@ export interface Props {
   useGoogleDriveViewer?: boolean
   withScroll?: boolean
   withPinchZoom?: boolean
+  pageNumber?: number
+  singlePage?: boolean
   maximumPinchZoomScale?: number
+  totalPages?: React.Dispatch<React.SetStateAction<number>>,
   onLoad?(event: WebViewNavigationEvent): void
   onLoadEnd?(event: WebViewNavigationEvent | WebViewErrorEvent): void
   onError?(event: WebViewErrorEvent | WebViewHttpErrorEvent | string): void
@@ -72,6 +75,8 @@ function viewerHtml(
   base64: string,
   customStyle?: CustomStyle,
   withScroll: boolean = false,
+  pageNumber: number = 1,
+  singlePage: boolean = false,
   withPinchZoom: boolean = false,
   maximumPinchZoomScale: number = 5,
 ): string {
@@ -111,6 +116,8 @@ function viewerHtml(
       } catch (error) {
         window.WITH_SCROLL = {}
       }
+      window.SINGLE_PAGE = ${singlePage}
+      window.PAGE_NUMBER = ${pageNumber}
     </script>
   </head>
   <body>
@@ -131,6 +138,8 @@ async function writeWebViewReaderFileAsync(
   data: string,
   customStyle?: CustomStyle,
   withScroll?: boolean,
+  pageNumber?: number,
+  singlePage?: boolean,
   withPinchZoom?: boolean,
   maximumPinchZoomScale?: number,
 ): Promise<void> {
@@ -145,6 +154,8 @@ async function writeWebViewReaderFileAsync(
       data,
       customStyle,
       withScroll,
+      pageNumber,
+      singlePage,
       withPinchZoom,
       maximumPinchZoomScale,
     ),
@@ -293,6 +304,8 @@ class PdfReader extends React.Component<Props, State> {
         source,
         customStyle,
         withScroll,
+        pageNumber,
+        singlePage,
         withPinchZoom,
         maximumPinchZoomScale,
       } = this.props
@@ -308,6 +321,8 @@ class PdfReader extends React.Component<Props, State> {
             data!,
             customStyle,
             withScroll,
+            pageNumber,
+            singlePage,
             withPinchZoom,
             maximumPinchZoomScale,
           )
@@ -319,6 +334,8 @@ class PdfReader extends React.Component<Props, State> {
             source.base64!,
             customStyle,
             withScroll,
+            pageNumber,
+            singlePage,
             withPinchZoom,
             maximumPinchZoomScale,
           )
@@ -477,6 +494,7 @@ class PdfReader extends React.Component<Props, State> {
               style,
               source: renderedOnce || !isAndroid ? source : undefined,
             }}
+            onMessage={(event) => console.log(event.nativeEvent.data)}
             allowFileAccess={isAndroid}
             allowFileAccessFromFileURLs={isAndroid}
             allowUniversalAccessFromFileURLs={isAndroid}

@@ -19,6 +19,7 @@ const options = {
 interface Props {
   file: any
   withScroll?: boolean
+  singlePage?: boolean
   customStyle?: {
     readerContainer?: any
     readerContainerDocument?: any
@@ -46,7 +47,7 @@ class Reader extends React.Component<Props, State> {
 
   state = {
     numPages: null,
-    currentPage: 1,
+    currentPage: pageNumber ? pageNumber : 1,
     ready: true,
     pageLoaded: false,
     scale: 1,
@@ -58,6 +59,7 @@ class Reader extends React.Component<Props, State> {
 
   onDocumentLoadSuccess = ({ numPages }) => {
     this.setState({ numPages })
+    window.ReactNativeWebView.postMessage(JSON.stringify({numPages}))
   }
 
   onError = (error: Error) => {
@@ -178,7 +180,7 @@ class Reader extends React.Component<Props, State> {
             </Document>
           </div>
 
-          {numPages && !withScroll && (
+          {numPages && !withScroll && !singlePage && (
             <div
               className='Reader__container__numbers'
               style={customStyle?.readerContainerNumbers}
@@ -210,7 +212,7 @@ class Reader extends React.Component<Props, State> {
               <Minus />
             </div>
           </div>)}
-          {numPages > 1 && !withScroll && (
+          {numPages > 1 && !withScroll && !singlePage && (
             <div
               className={'Reader__container__navigate'}
               style={customStyle?.readerContainerNavigate}
@@ -250,10 +252,12 @@ class Reader extends React.Component<Props, State> {
 const tagData = document.querySelector('#file')
 const file = tagData.getAttribute('data-file')
 // @ts-ignore
-const customStyle = window.CUSTOM_STYLE
+const customStyle = window["CUSTOM_STYLE"]
+const showZoom = window["SHOW_ZOOM"]
+const singlePage = window["SINGLE_PAGE"]
+const pageNumber = window["PAGE_NUMBER"]
 // @ts-ignore
-const withScroll = false
+const withScroll = window.SINGLE_PAGE ? false : window.WITH_SCROLL
   // window.WITH_SCROLL
-const showZoom = false
 
-ReactDom.render(<Reader {...{ file, customStyle, withScroll, showZoom }} />, ReactContainer)
+ReactDom.render(<Reader {...{ file, customStyle, withScroll, showZoom, singlePage, pageNumber }} />, ReactContainer)
