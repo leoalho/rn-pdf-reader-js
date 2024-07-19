@@ -59,7 +59,7 @@ class Reader extends React.Component<Props, State> {
 
   onDocumentLoadSuccess = ({ numPages }) => {
     this.setState({ numPages })
-    window["ReactNativeWebView"].postMessage(JSON.stringify({numPages}))
+    window["ReactNativeWebView"] && window["ReactNativeWebView"].postMessage(JSON.stringify({numPages}))
   }
 
   onError = (error: Error) => {
