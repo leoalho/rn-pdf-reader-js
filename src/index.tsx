@@ -57,7 +57,7 @@ export interface Props {
   pageNumber?: number
   singlePage?: boolean
   maximumPinchZoomScale?: number
-  totalPages?: React.Dispatch<React.SetStateAction<number>>,
+  totalPages?: any,
   onLoad?(event: WebViewNavigationEvent): void
   onLoadEnd?(event: WebViewNavigationEvent | WebViewErrorEvent): void
   onError?(event: WebViewErrorEvent | WebViewHttpErrorEvent | string): void
@@ -497,7 +497,8 @@ class PdfReader extends React.Component<Props, State> {
             onMessage={(event) =>  {
               const eventJSON = JSON.parse(event.nativeEvent.data)
               const totalPages = eventJSON.numPages
-              this.props.totalPages && this.props.totalPages(totalPages)
+              if (this.props.totalPages) {
+                this.props.totalPages(totalPages as number)}
             }}
             allowFileAccess={isAndroid}
             allowFileAccessFromFileURLs={isAndroid}
